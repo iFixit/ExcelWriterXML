@@ -197,7 +197,7 @@ class ExcelWriterXML{
          $id = substr($shortId, 0, $maxLength - 3) . '...';
       }
       // Fix bad sheet names. No slash, apparently. -Sterling
-      $badChars = ['/', '\\', '?', '*', '[', ']'];
+      $badChars = array('/', '\\', '?', '*', '[', ']');
       $id = str_replace($badChars, '_', $id);
 
 		while (!$this->checkSheetID($id)){
