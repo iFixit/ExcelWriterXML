@@ -191,6 +191,15 @@ class ExcelWriterXML{
 			$this->addError(__FUNCTION__,'Sheet name was blank, renamed to "'.$id.'"');
 		}
 
+      $maxLength = 31;
+      $shortId = substr($id, 0, $maxLength);
+      if ($id != $shortId) {
+         $id = substr($shortId, 0, $maxLength - 3) . '...';
+      }
+      // Fix bad sheet names. No slash, apparently. -Sterling
+      $badChars = ['/', '\\', '?', '*', '[', ']'];
+      $id = str_replace($badChars, '_', $id);
+
 		while (!$this->checkSheetID($id)){
 			$old_id = $id;
 			$id = 'Sheet'.$sheetNum;
